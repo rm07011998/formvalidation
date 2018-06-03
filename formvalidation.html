@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>  
+<head>
+    <title>formvalidation</title>
+    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC" rel="stylesheet">
+    <script type="text/javascript" src="jquery-3.3.1.min.js"> </script>
+    <style type="text/css">
+    
+    
+        body{
+            
+            font-size:200%;
+            font-family: 'Bowlby One SC', cursive;
+        }
+    
+        input{
+            
+            height:40px;
+            width:800px;
+            background-color: aqua;
+            font-weight: bold;
+            font-size:120%;
+            padding:5px;
+            text-align:center;
+            border:2px black solid;
+            border-radius:5px;
+        }
+        #label{
+            width:250px;
+          
+            margin: 0px 5px 0px 5px;
+            float:left;
+        }
+        #clear{
+            clear:both;
+        }
+        #but{
+            
+            font-size:150%;
+            background-color: darkgrey;
+            border:none;
+            color:black;
+            border-radius:10px;
+             font-weight:bold;
+            padding:5px;
+            text-align: center;
+            width:400px;
+            outline: none;
+            position:relative;
+            left:300px;
+                
+            
+        }
+        #but:hover{
+            
+            cursor:pointer;
+        }
+        #but:active{
+            transform: translateY(10px);
+            
+        }
+        #error{
+            color: red;
+            animation:blink  .5s infinite;
+            
+        }
+        @keyframes blink{
+            from{background-color:white;}
+            to{background-color: yellow;}
+        }
+         #success{
+            color: greenyellow;
+            
+        }
+       
+    </style>
+</head>
+
+    
+<body>
+     <div id="error"></div>
+    <div id="success"></div>  
+     <div id="label">  <label for="email" >Email</label></div>
+    <input type="text" name="email" id="email" placeholder="eg:email.com">
+   
+    <div id="clear"></div>
+    <hr>
+     <div id="label">   <label  for="phone" >Telphone.No</label></div>
+    <input type="text" name="phone" id="phone" placeholder="eg:9648939870">
+   
+     <div id="clear"></div>
+    <hr>
+     <div id="label">   <label  for="pass" >Password</label></div>
+    <input type="text" name="pass" id="pass" placeholder="*******">
+    
+     <div id="clear"></div>
+     <hr>
+    
+     <div id="label">   <label  for="confirmpass" >Confirm Password</label></div>
+    <input type="text" name="confirmpass" id="confirmpass" placeholder="*******">
+  
+     <div id="clear"></div>
+     <hr>
+    
+    <button id="but">Sign Up</button>
+   
+    
+    
+    
+    
+    
+    
+    <script type="text/javascript" >
+    
+        
+        function isEmail(email) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
+        }
+    $("#but").click(function(){
+        
+        var errorm="";
+     //   alert("your respond is recorded");
+        var missing="";
+        if($("#email").val()=="")
+            missing+="<br>email";
+        if($("#phone").val()=="")
+            missing+="<br>phone";
+        if($("#pass").val()=="")
+            missing+="<br>password";
+        if($("#confirmpass").val()=="")
+            missing+="<br>confirm password";
+        if(missing!="")
+            errorm+="the following fields are missing:"+missing;
+        if(!isEmail($("#email").val()))
+        {
+            
+            errorm+="<p>"+"plz enter the valid email"+"</p>";
+        }
+        
+        if(!$.isNumeric($("#phone").val())){
+            
+             errorm+="<p>"+"plz enter the valid phone number"+"</p>";
+           }
+      if($("#pass").val()!=$("#confirmpass").val())
+       { 
+           errorm+= "<p>"+"the password are not matched"+"</p>";
+        
+       }
+        
+       if(errorm!="")
+           {
+               $("#error").show();
+               $("#error").html(errorm);
+               $("#success").hide();
+           }
+        else{
+                           $("#error").hide();
+              
+               $("#success").show();
+
+            $("#success").html("Your Respond recorded");
+        }
+    });
+    
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </body>  
+   
+    
+    
+    
+    
+    
+</html>
